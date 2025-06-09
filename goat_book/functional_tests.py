@@ -2,7 +2,7 @@ import unittest
 from selenium import webdriver
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewDjangoProjectTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
