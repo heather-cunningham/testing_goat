@@ -9,9 +9,14 @@ class HomePageTest(TestCase):
         request = HttpRequest()
         response = homepage(request) 
         html = response.content.decode("utf-8")
-        #
-        #
         self.assertIn("<title>Home | To-Do</title>", html)
+
+
+    def test_empty_slug_is_homepage(self):
+        response = self.client.get("/")
+        self.assertContains(response, "<title>Home | To-Do</title>")
+        self.assertContains(response, '<html lang="en">')
+        self.assertContains(response, "</html>")
 
 
 
