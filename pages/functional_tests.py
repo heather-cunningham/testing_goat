@@ -3,6 +3,9 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import sys
+sys.path.append("C:/MyRepos/NSCC_Webucator/TestingGoat")
+from test_utils.test_helpers import check_table_for_cell_text
 
 
 class NewVisitorTest(unittest.TestCase):
@@ -17,7 +20,6 @@ class NewVisitorTest(unittest.TestCase):
     def test_home_page_title(self):
         self.browser.get("http://localhost:8000")
         self.assertIn("Home | To-Do", self.browser.title) 
-        print(f"!!!! OK, 'Home | To-Do' found in title of browser window.")
 
 
     def test_can_start_to_do_list(self):
@@ -38,18 +40,18 @@ class NewVisitorTest(unittest.TestCase):
         textbox.send_keys(Keys.ENTER)
         time.sleep(0.5)  # Wait X seconds for the page to update
         # The page updates and shows the new to-do item in a table
-        # The table should exist
-        table = self.browser.find_element(By.ID, "todo-tbl")
-        self.assertIsNotNone(table, msg="To-Do table NOT found on homepage.")
-        buy_milk_tbl_cell = self.browser.find_element(By.ID, "id_table_cell_1")
-        self.assertIsNotNone(buy_milk_tbl_cell, msg="To-Do table cell for 'buy milk' NOT found.")
-        # There is still a textbox to add another item.
-        # User enters "Use milk to bake cake"
-        # The page updates again, and now shows both items on in the table
-        use_milk_tbl_cell = self.browser.find_element(By.ID, "id_table_cell_2")
-        self.fail("Finish the test!")
+        table_id = "todo-tbl" 
+        self.browser.find_element(By.ID, table_id)
+        check_table_for_cell_text(self, table_id, "buy milk")
+        # There should still be a textbox to add another item.
+        textbox = self.browser.find_element(By.ID, "add-todo-textbox")
+        # # User types another to-do task into the input box: "Use milk to bake cake".
+        textbox.send_keys("Use milk to bake cake")
+        textbox.send_keys(Keys.ENTER)
+        time.sleep(0.5)
+        # The page updates again and shows the nwe item in the table.
+        check_table_for_cell_text(self, table_id, "Use milk to bake cake")
 ## END class NewVisitorTest()
-
         
 
 if(__name__ == "__main__"):
