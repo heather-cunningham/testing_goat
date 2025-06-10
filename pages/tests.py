@@ -21,7 +21,13 @@ class HomePageTest(TestCase):
     def test_homepage_renders_input_form(self):
         response = self.client.get("/")
         self.assertContains(response, '<form id="add-todo-item-form" method="POST">')
-        self.assertContains(response, '<input id="add-todo-textbox" name="add_todo">')
+        self.assertContains(response, '<input id="add-todo-textbox" name="add_todo_item"')
+
+
+    def test_homepg_can_save_a_POST_request(self):
+        response = self.client.post("/", data={"add_todo_item": "A new to-do item"})
+        self.assertContains(response, "A new to-do item")
+        self.assertTemplateUsed(response, "pages/homepage.html")
 
 
 

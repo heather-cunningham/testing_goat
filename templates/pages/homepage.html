@@ -7,12 +7,16 @@
 
 <form id="add-todo-item-form" method="POST">
   {% csrf_token %}
-  <input id="add-todo-textbox" type="text" placeholder="Enter a to-do item" 
-     name="add_todo" value="" />
+  <input id="add-todo-textbox" name="add_todo_item" type="text" value="" 
+    placeholder="Enter a to-do item" />
 </form>
 
 <table id="todo-tbl">
   <thead id="todo-tbl-head"></thead>
-  <tbody id="todo-tbl-body"></tbody>
+  <tbody id="todo-tbl-body">
+    <tr>
+      <td id="todo-tbl-cell-{{item.id}}">{{ new_item_text }}</td>
+    </tr>
+  </tbody>
 </table>
 {% endblock %}
