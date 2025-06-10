@@ -8,6 +8,14 @@
   <title>{% block title %}{% endblock %} | To-Do</title>
 </head>
 
-<body></body>
+<body>
+  {% block body %}
+  
+  <main>
+  {% block main %}{% endblock %}
+  </main>
+
+  {% endblock %}
+</body>
 
 </html>

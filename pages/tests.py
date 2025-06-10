@@ -5,18 +5,16 @@ from pages.views import homepage
 
 
 class HomePageTest(TestCase):
-    def test_homepage_returns_correct_html(self):
+    def test_homepage_has_correct_title(self):
         request = HttpRequest()
         response = homepage(request) 
         html = response.content.decode("utf-8")
         self.assertIn("<title>Home | To-Do</title>", html)
 
 
-    def test_empty_slug_is_homepage(self):
+    def test_empty_url_slug_is_homepage(self):
         response = self.client.get("/")
-        self.assertContains(response, "<title>Home | To-Do</title>")
-        self.assertContains(response, '<html lang="en">')
-        self.assertContains(response, "</html>")
+        self.assertTemplateUsed(response, "pages/homepage.html")
 
 
 
