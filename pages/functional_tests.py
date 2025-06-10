@@ -49,7 +49,7 @@ class NewVisitorTest(unittest.TestCase):
         textbox.send_keys("Use milk to bake cake")
         textbox.send_keys(Keys.ENTER)
         time.sleep(0.5)
-        # The page updates again and shows the nwe item in the table.
+        # The page updates again and shows the new item in the table.
         check_table_for_cell_text(self, table_id, "Use milk to bake cake")
 ## END class NewVisitorTest()
         
