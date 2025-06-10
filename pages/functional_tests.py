@@ -40,7 +40,7 @@ class NewVisitorTest(unittest.TestCase):
         # The page updates and shows the new to-do item in a table
         # The table should exist
         table = self.browser.find_element(By.ID, "todo-tbl")
-        self.assertIsNotNone(table, msg="To-Do table not found on homepage.")
+        self.assertIsNotNone(table, msg="To-Do table NOT found on homepage.")
         buy_milk_tbl_cell = self.browser.find_element(By.ID, "id_table_cell_1")
         # There is still a textbox to add another item.
         # User enters "Use milk to bake cake"

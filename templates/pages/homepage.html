@@ -4,9 +4,12 @@
 
 {% block main %}
 <h1 id="to-do-main-header">To-Do Lists</h1>
-<p>
-  <input type="text" id="add-todo-textbox" placeholder="Enter a to-do item" value="" />
-</p>
+
+<form id="add-todo-item-form" method="POST">
+  {% csrf_token %}
+  <input id="add-todo-textbox" type="text" placeholder="Enter a to-do item" 
+     name="add_todo" value="" />
+</form>
 
 <table id="todo-tbl">
   <thead id="todo-tbl-head"></thead>
